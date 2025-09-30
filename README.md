@@ -27,14 +27,34 @@ HOW TO RUN ON ZEUS
 2. Navigate to the directory containing the assignment files.
 
 3. Run Problem 1:
-   python3 problem1.py
+   python3 problem_1.py
 
    Output:
    - A list of 1000 tuples: <process ID, arrival time, service time>
    - The actual average arrival rate and average service time
 
 4. Run Problem 2:
-   python3 problem2.py
+   python3 problem_2.py
+
+   Output:
+   - Part (a): Example failure/restoration times for each server
+   - Part (b): Expected system failure time (hours and years)
+
+------------------------------------------------------------
+HOW TO RUN ON ONLINE PYTHON
+------------------------------------------------------------
+
+1. Go to: [online-python.com](https://www.online-python.com/)
+
+2. Import the two files (problem_1.py and problem_2.py).
+
+3. Run Problem 1: Hit Run button
+
+   Output:
+   - A list of 1000 tuples: <process ID, arrival time, service time>
+   - The actual average arrival rate and average service time
+
+4. Run Problem 2: Hit Run button
 
    Output:
    - Part (a): Example failure/restoration times for each server
