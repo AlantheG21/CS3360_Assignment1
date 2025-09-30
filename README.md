@@ -7,8 +7,8 @@ Date: 09/30/2025
 ------------------------------------------------------------
 FILES INCLUDED
 ------------------------------------------------------------
-- problem1.py   : Simulation of 1000 process arrivals and service times.
-- problem2.py   : Simulation of mirrored server failures and system reliability.
+- problem_1.py   : Simulation of 1000 process arrivals and service times.
+- problem_2.py   : Simulation of mirrored server failures and system reliability.
 - report.pdf    : Report describing the programs, results, and answers.
 
 ------------------------------------------------------------
