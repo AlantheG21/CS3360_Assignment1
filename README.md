@@ -1,8 +1,8 @@
 # CS3360_Assignment1
 
-CS 3360 – Programming Assignment 1
-Name: Alan Garcia
-Date: 09/30/2025
+CS 3360 – Programming Assignment 1  
+Name: Alan Garcia  
+Date: 09/30/2025  
 
 ------------------------------------------------------------
 FILES INCLUDED
