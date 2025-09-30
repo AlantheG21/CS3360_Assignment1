@@ -2,24 +2,40 @@ import random
 import math
 
 def exponential(mean):
-    """Generate an exponentially distributed random variable."""
-    return -mean * math.log(1 - random.random())
+    """Generate exponential random variable with given mean."""
+    u = random.random()
+    return -mean * math.log(1 - u)
 
-def simulate_servers(years=20, mtbf=500, restore_time=50):
-    total_hours = years * 365 * 24
+def simulate_servers(years=20, mtbf=500, restore_time=10):
+    """
+    Part (a): simulate 20 years of operation for two mirrored servers.
+    Records all failure and restoration intervals for each server.
+    """
+    horizon = years * 365 * 24  # total hours
     events = {"server1": [], "server2": []}
-    times = [0, 0]  # Current time for each server
 
-    for server in range(2):
-        t = 0
-        while t < total_hours:
-            uptime = exponential(mtbf)
-            fail_time = t + uptime
+    # Next scheduled failure times for each server
+    t1 = exponential(mtbf)
+    t2 = exponential(mtbf)
+    current_time = 0
+
+    while current_time < horizon:
+        if t1 < t2:
+            fail_time = t1
             restore_end = fail_time + restore_time
-            if fail_time < total_hours:
-                events[f"server{server+1}"].append((round(fail_time, 2), "fail"))
-            t = restore_end
-        
+            if fail_time < horizon:
+                events["server1"].append((round(fail_time, 2), round(restore_end, 2)))
+            # move server1’s next failure past restoration
+            current_time = restore_end
+            t1 = current_time + exponential(mtbf)
+        else:
+            fail_time = t2
+            restore_end = fail_time + restore_time
+            if fail_time < horizon:
+                events["server2"].append((round(fail_time, 2), round(restore_end, 2)))
+            current_time = restore_end
+            t2 = current_time + exponential(mtbf)
+
     return events
 
 def simulate_system_lifetime(mtbf=500, restore_time=10):
@@ -44,21 +60,13 @@ def simulate_system_lifetime(mtbf=500, restore_time=10):
 
 
 def system_failure_times(trials=50, mtbf=500,restore_time=10):
-    #fail_times = []
     results = []
     for _ in range(trials):
-        #t1, t2 = 0, 0
-        #while True:
-            # uptime1 = exponential(mtbf); uptime2 = exponential(mtbf)
-            # t1 += uptime1; t2 += uptime2
-            # if(abs(t1-t2)) < restore_time:
-            #     fail_times.append(min(t1,t2))
-            #     break
-            # t1 += restore_time; t2 += restore_time
         lifetime = simulate_system_lifetime(mtbf, restore_time)
         results.append(lifetime)
     #return sum(fail_times)/len(fail_times)
     return sum(results)/len(results)
+
 
 if __name__ == "__main__":
     random.seed(42)
